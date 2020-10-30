@@ -15,8 +15,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <div class="card my-3 mx-auto w-50 shadow-sm">
+                        <div class="card-header">
+                        <h4>Opciones de {{Str::title(auth()->user()->roles()->first()->name)}}</h4>
+                        </div>
+                        <div class="card-body my-2">
+                            <div class="text-center">
+                                <a href="{{route('users.index')}}">
+                                    <button class="btn btn-primary">Gestionar Usuarios</button>
+                                </a>
+                            </div>
+                            <div class="text-center my-2">
+                                <a href="{{route('companies')}}">
+                                    <button class="btn btn-success">Gestionar Farmacias</button>
+                                </a>
+                            </div>
+                            <div class="text-center my-2">
+                                <a href="">
+                                    <button class="btn btn-info disabled" disabled>
+                                        Gestionar Afiliados
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

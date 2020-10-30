@@ -17,7 +17,7 @@ class CreateEmpleadosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('email')->unique();
-            $table->integer('dni')->unique();
+            $table->integer('dni');
             $table->integer('legajo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('username')->nullable();
