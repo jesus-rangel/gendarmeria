@@ -90,7 +90,7 @@
                                                 <a href="{{route('organizations.edit', $organization->id)}}" class='edit' >
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <a href='#deleteEmployeeModal' class='delete'>
+                                                <a href="{{route('organizations.delete', $organization->id)}}" class" class='delete'>
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -111,7 +111,8 @@
                     <div id="addEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form>
+                                <form method="POST" action="{{route('organizations.store')}}">
+                                    @csrf
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Agregar Farmacia</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -143,8 +144,8 @@
                                         </div>					
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-info" value="Save">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                                        <input type="submit" class="btn btn-info" value="Agregar">
                                     </div>
                                 </form>
                             </div>
@@ -171,7 +172,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

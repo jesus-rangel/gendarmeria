@@ -36,7 +36,15 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $organization = Organization::create($request->all());
+
+        if(!$organization->save()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('companies');
+        }
+
+        flash(__('Farmacia agregada con éxito!'))->success()->important();
+        return redirect()->route('companies');
     }
 
     /**
@@ -70,9 +78,22 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, Organization $organization)
     {
-        dd('Hello World');
+        $organization->fill($request->all());
+        $organization->save();
+
+        if(!$organization->save()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('companies');
+        }
+
+        flash(__('Farmacia actualizada con éxito!'))->success()->important();
+        return redirect()->route('companies');
     }
 
+    public function delete(Organization $organization)
+    {
+        return view('companies.delete', compact('organization'));
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +102,15 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization)
     {
-        //
+        $organization->delete();
+
+        if(!$organization->delete()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('companies');
+        }
+
+        flash(__('Farmacia eliminada con éxito!'))->success()->important();
+
+        return redirect()->route('companies');
     }
 }

@@ -73,8 +73,16 @@ class UserController extends Controller
         ];
         $user = User::create($data); */
         
-        $user = User::create($request->all());
-        flash(__('Submit Success!'))->success()->important();
+        $user = new User;
+        $user->fill($request->all());
+        $user->password = 'CirSub*2020';
+        $user->save();
+
+        if(!$user->save()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('users.index');
+        }
+        flash(__('Usuario agregado con éxito!'))->success()->important();
         return redirect()->route('users.index');
         
     }
@@ -83,8 +91,14 @@ class UserController extends Controller
     {
         $user->fill($request->all());
         $user->save();
-        flash(__('Submit Success!'))->success()->important();
-        return redirect()->back();
+
+        if(!$user->save()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('users.index');
+        }
+
+        flash(__('Usuario actualizado con éxito!'))->success()->important();
+        return redirect()->route('users.index');
     }
 
     public function delete(User $user)
@@ -94,6 +108,14 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->back();
+
+        if(!$user->delete()) {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('users.index');
+        }
+
+        flash(__('Usuario elminiado con éxito!'))->success()->important();
+        return redirect()->route('users.index');
+
     }
 }

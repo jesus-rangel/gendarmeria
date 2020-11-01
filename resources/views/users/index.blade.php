@@ -107,7 +107,8 @@
                     <div id="addEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form>
+                                <form method="POST" action=" {{route('users.store')}} ">
+                                    @csrf
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Agregar Usuario</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -131,8 +132,8 @@
                                         </div>					
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-success" value="Add">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                                        <input type="submit" class="btn btn-info" value="Agregar">
                                     </div>
                                 </form>
                             </div>
@@ -153,7 +154,7 @@
                                         <p class="text-warning"><small>This action cannot be undone.</small></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="{{__('Cancel')}}">
                                         <input type="submit" class="btn btn-danger" value="Delete">
                                     </div>
                                 </form>

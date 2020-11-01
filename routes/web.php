@@ -33,6 +33,7 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::get('/users/change-password-email', [UserController::class, 'changePasswordEmail'])->name('users.change-password-email');
     Route::post('/users/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
     Route::get('/users/delete/{user}', [UserController::class, 'delete'])->name('users.delete');
+    Route::get('/organizations/delete/{organization}', [OrganizationController::class, 'delete'])->name('organizations.delete');
     
     Route::resource('users', UserController::class);
     Route::resource('organizations', OrganizationController::class);
