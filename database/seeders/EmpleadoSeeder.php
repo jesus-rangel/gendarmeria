@@ -20,7 +20,7 @@ class EmpleadoSeeder extends Seeder
             'email' => 'jesusr.nm@gmail.com',
             'dni' => '95805562'
         ]);
-        Empleado::create([
+        /* Empleado::create([
             'nombre' => 'Ramon Federico Leguizamon',
             'email' => 'fleguizamon@cirsubgn.org',
             'dni' => '39317366',
@@ -99,6 +99,11 @@ class EmpleadoSeeder extends Seeder
             'nombre' => 'Jesus M. Rangel',
             'email' => 'jmrnava@gmail.com',
             'dni' => '3031386'
+        ]); */
+        Empleado::create([
+            'nombre' => 'Jesus Alberto Rangel',
+            'email' => 'llamadmealbert@aol.com',
+            'dni' => '95805562'
         ]);
     }
 }

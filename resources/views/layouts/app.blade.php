@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -17,10 +17,8 @@
 
     <!-- Styles -->
     {{-- FontAwesome CDN --}}
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href=" {{asset('css/login.css')}} ">
-    {{-- app.css --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- Bootstrap CDN --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">
     @yield('custom-css')
@@ -29,8 +27,9 @@
     <div id="app" class="h-100">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top shadow-sm">
             <div class="container">
+                @include('flash::message')
                 {{-- {{ config('app.name', 'Laravel') }} --}}
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     Gestión y Control de Beneficios Sociales
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -60,15 +59,21 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="#" class="dropdown-item disabled">
+                                    {{__('Búsqueda Afiliados')}}
+                                </a>
+                                <a href="#" class="dropdown-item disabled">
+                                    {{__('Retractar operación')}}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{route('users.change-password-form', auth()->user())}}" class="dropdown-item">
+                                    {{__('Cambiar contraseña')}}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    {{__('Búsqueda')}}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -82,14 +87,14 @@
                             type="text" 
                             placeholder="Buscar Afiliado por DNI"
                         >
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="search-btn">Buscar</button>
+                        <button class="btn btn-secondary my-2 my-sm-0 disabled" type="submit" id="search-btn">Buscar</button>
                     </form>
                     @endguest
                 </div>
             </div>
         </nav>
 
-        <main class="py-4 h-100">
+        <main class="mt-4">
             @yield('content')
         </main>
     </div>
@@ -99,6 +104,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
         $('.dropdown-toggle').dropdown()
+        $('#flash-overlay-modal').modal();
      </script>
+     @yield('custom-js')
 </body>
 </html>
