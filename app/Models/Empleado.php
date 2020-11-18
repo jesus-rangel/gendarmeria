@@ -26,4 +26,6 @@ class Empleado extends Model
     protected $casts = [
         'email_verified_at' => 'datetime'
     ];
+
+    protected $table = 'rh_legajo_adm';
 }

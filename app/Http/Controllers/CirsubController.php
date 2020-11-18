@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CirsubController extends Controller
 {
-    public function cirsub()
+    public function index()
     {
         return view('layouts.cirsub');
     }

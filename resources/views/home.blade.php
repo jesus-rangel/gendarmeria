@@ -25,18 +25,25 @@
                                     <button class="btn btn-primary">Gestionar Usuarios</button>
                                 </a>
                             </div>
+                            @if (auth()->user()->hasRole('super-admin'))
                             <div class="text-center my-2">
-                                <a href="{{route('companies')}}">
+                                <a href="{{route('organizations.index')}}">
                                     <button class="btn btn-success">Gestionar Farmacias</button>
                                 </a>
                             </div>
                             <div class="text-center my-2">
-                                <a href="">
+                                <a href="#">
                                     <button class="btn btn-info disabled" disabled>
                                         Gestionar Afiliados
                                     </button>
                                 </a>
                             </div>
+                            <div class="text-center my-2">
+                                <a href="{{route('products.index')}}">
+                                    <button class="btn btn-warning">Vademecum</button>
+                                </a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

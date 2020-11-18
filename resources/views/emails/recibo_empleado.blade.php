@@ -1,5 +1,7 @@
 @component('mail::message')
-  <h1 style="text-align: center;">Saludos, {{$empleado['nombre']}}</h1>
+  <h1 style="text-align: center;">
+    Saludos, {{ucwords(strtolower($empleado->H_nombre . ' ' . $empleado->H_apellido))}}
+  </h1>
   <p style="text-align: center;">
     De ahora en adelante, usted puede 
     <strong>descargar sus recibos de sueldo</strong> 

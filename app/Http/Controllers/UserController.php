@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
+use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin|super-admin'])->except(['index','changePasswordForm', 'changePassword']);
+    }
     public function changePasswordForm(Request $request, User $user)
     {
         return view('users.change_password', compact('user'));
@@ -21,6 +27,7 @@ class UserController extends Controller
 
     public function changePassword(ChangePasswordRequest $request)
     {
+        // $this->can('changePassword', auth()->user());
         if (Hash::check($request->old_password, auth()->user()->password)) {
             auth()->user()->password = $request->password;
         } else {
@@ -42,8 +49,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::name($request->search_name)->dni($request->search_dni)->paginate(10);
-        return view('users.index', compact('users'));
+        $users = User::name($request->search_name)->dni($request->search_dni)->paginate(5);
+        $roles = Role::all();
+        return view('users.index', compact('users', 'roles'));
     }
 
     public function create()
@@ -53,7 +61,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function show(User $user)
@@ -76,12 +85,20 @@ class UserController extends Controller
         $user = new User;
         $user->fill($request->all());
         $user->password = 'CirSub*2020';
-        $user->save();
-
         if(!$user->save()) {
             flash(__('Error de operación!'))->error()->important();
             return redirect()->route('users.index');
         }
+        if (auth()->user()->hasRole('admin'))
+        {
+            $user->assignRole('user');
+        }
+        elseif (auth()->user()->hasRole('super-admin'))
+        {
+            $user->assignRole($request->user_role);
+        }
+
+        
         flash(__('Usuario agregado con éxito!'))->success()->important();
         return redirect()->route('users.index');
         
@@ -90,8 +107,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->fill($request->all());
-        $user->save();
-
+        $user->roles()->sync($request->user_role);
+        
         if(!$user->save()) {
             flash(__('Error de operación!'))->error()->important();
             return redirect()->route('users.index');

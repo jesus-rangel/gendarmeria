@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class OrganizationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin|super-admin'])->only(['edit', 'update', 'delete', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class OrganizationController extends Controller
     public function index(Request $request)
     {
         $organizations = Organization::name($request->search_name)->provincia($request->search_province)/* ->domicilio($request->search_address) */->paginate(5);
-        return view('companies.index', compact('organizations'));
+        return view('organizations.index', compact('organizations'));
     }
 
     /**
@@ -40,11 +45,11 @@ class OrganizationController extends Controller
 
         if(!$organization->save()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('companies');
+            return redirect()->route('organizations.index');
         }
 
         flash(__('Farmacia agregada con éxito!'))->success()->important();
-        return redirect()->route('companies');
+        return redirect()->route('organizations.index');
     }
 
     /**
@@ -66,7 +71,7 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        return view('companies.edit', compact('organization'));
+        return view('organizations.edit', compact('organization'));
     }
 
     /**
@@ -83,16 +88,16 @@ class OrganizationController extends Controller
 
         if(!$organization->save()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('companies');
+            return redirect()->route('organizations.index');
         }
 
         flash(__('Farmacia actualizada con éxito!'))->success()->important();
-        return redirect()->route('companies');
+        return redirect()->route('organizations.index');
     }
 
     public function delete(Organization $organization)
     {
-        return view('companies.delete', compact('organization'));
+        return view('organizations.delete', compact('organization'));
     }
     /**
      * Remove the specified resource from storage.
@@ -106,11 +111,11 @@ class OrganizationController extends Controller
 
         if(!$organization->delete()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('companies');
+            return redirect()->route('organizations.index');
         }
 
         flash(__('Farmacia eliminada con éxito!'))->success()->important();
 
-        return redirect()->route('companies');
+        return redirect()->route('organizations.index');
     }
 }

@@ -41,6 +41,18 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control" value="{{$user->email}}" required>
               </div>
+              @if (auth()->user()->hasRole('super-admin'))
+              <div class="form-group">
+                  <label for="user_role">Rol</label>
+                  <select name="user_role" id="user_role" class="form-control">
+                      @foreach($roles as $role)
+                      <option value="{{$role->id}}" {{$role->id == $user->roles()->first()->id ? 'selected' : ''}}>
+                          {{$role->name}}
+                      </option>
+                      @endforeach   
+                  </select>    
+              </div>
+              @endif
               <div class="card-footer">
                 <a href="{{url()->previous()}}" class="btn btn-default">
                   Cancelar

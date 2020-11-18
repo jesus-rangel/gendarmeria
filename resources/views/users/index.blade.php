@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="css/main-dashboard.css">
 @endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container"vid="main-container">
+    <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{-- {{ __('Dashboard') }} --}}
@@ -48,6 +48,7 @@
                                         <div class="col-sm-6">
                                             <h2>Gestionar <b>Usuarios</b></h2>
                                         </div>
+                                        @if (auth()->user()->hasRole(['super-admin', 'admin']))
                                         <div class="col-sm-6">
                                             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
                                                 <i class="material-icons">&#xE147;</i> <span>Agregar Usuario</span>
@@ -56,6 +57,7 @@
                                                 <i class="material-icons">&#xE15C;</i> <span>Borrar</span>
                                             </a> --}}						
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover">
@@ -129,7 +131,19 @@
                                         <div class="form-group">
                                             <label>DNI</label>
                                             <input type="text" class="form-control" name="dni" id="dni" required>
-                                        </div>					
+                                        </div>
+                                        @if (auth()->user()->hasRole('super-admin'))
+                                        <div class="form-group">
+                                            <label for="user_role">Rol</label>
+                                            <select name="user_role" id="user_role" class="form-control">
+                                                @foreach($roles as $role)
+                                                <option value="{{$role->id}}">
+                                                    {{$role->name}}
+                                                </option>
+                                                @endforeach   
+                                            </select>    
+                                        </div>
+                                        @endif					
                                     </div>
                                     <div class="modal-footer">
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">

@@ -1,11 +1,9 @@
 /* Inspired by coder Mutiullah Samim */
 @import url("https://fonts.googleapis.com/css?family=Numans");
 
-body,
-html {
+body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     background-image: url(../img/nurse2.jpg) !important;
     /* Photo by Gustavo Fring from Pexels */
     background-size: cover;
