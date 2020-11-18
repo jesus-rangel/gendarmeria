@@ -65,7 +65,7 @@
                     Ha olvidado su contraseña?
                 </div>
                 <div class="d-flex justify-content-center links">
-                    <a href="#">Contactar al admin</a>
+                    <a href="{{route('password.request')}}">Reestablecer Contraseña</a>
                 </div>
             </div>
         </div>

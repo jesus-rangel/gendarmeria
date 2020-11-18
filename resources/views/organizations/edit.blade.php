@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{asset('css/home.css')}}">
 @endsection
 @section('content')
-<div class="container">
+<div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">

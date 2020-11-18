@@ -24,7 +24,7 @@
     @yield('custom-css')
 </head>
 <body>
-    <div id="app" class="h-100">
+    <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top shadow-sm">
             <div class="container">
                 @include('flash::message')

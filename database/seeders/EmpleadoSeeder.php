@@ -89,20 +89,20 @@ class EmpleadoSeeder extends Seeder
             'nombre' => 'Rodrigo Agudo',
             'email' => 'agudorod@gmail.com',
             'dni' => '87654321'
-        ]);
-        Empleado::create([
+        ]); */
+        /* Empleado::create([
             'nombre' => 'Jorge Diaz',
             'email' => 'diazjorgeluis10@gmail.com',
             'dni' => '18273645'
-        ]);
+        ]); */
         Empleado::create([
             'nombre' => 'Jesus M. Rangel',
             'email' => 'jmrnava@gmail.com',
             'dni' => '3031386'
-        ]); */
+        ]);
         Empleado::create([
             'nombre' => 'Jesus Alberto Rangel',
-            'email' => 'llamadmealbert@aol.com',
+            'email' => 'llamadmealberto@aol.com',
             'dni' => '95805562'
         ]);
     }
