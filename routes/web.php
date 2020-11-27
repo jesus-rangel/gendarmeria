@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CirsubController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FacadeLoginController;
 use App\Http\Controllers\OrganizationController;
@@ -39,6 +41,8 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::resource('users', UserController::class);
     Route::resource('organizations', OrganizationController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('sales', SaleController::class);
 });
 
 Route::get('facade/login', [App\Http\Controllers\FacadeLoginController::class, 'login'])->name('facade.login');

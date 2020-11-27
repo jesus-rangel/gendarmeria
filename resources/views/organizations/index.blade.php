@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('custom-css')
-<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="{{asset('css/home.css')}}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="css/main-dashboard.css">
+<link rel="stylesheet" href="{{asset('css/main-dashboard.css')}}">
 @endsection
 @section('content')
 <div class="container" id="main-container">

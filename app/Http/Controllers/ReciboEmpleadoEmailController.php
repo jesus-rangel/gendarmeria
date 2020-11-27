@@ -18,16 +18,13 @@ class ReciboEmpleadoEmailController extends Controller
         echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">';
         echo 
             '<div class="jumbotron">
-                <h1 class="display-4">Envío Masivo de Correos Iniciado</h1>
-                <p class="lead">Este proceso puede tardar varios minutos dependiendo de la carga del servidor</p>
+                <h1 class="display-4">Envío Masivo de Correos Finalizado</h1>
+                <p class="lead">Más abajo puede conseguir una lista de todas las direcciones que recibieron un correo</p>
                 <hr class="my-4">
-                <p>Mientras tanto, puede volver atrás en el explorador y seguir trabajando.</p>
+                <p>Ahora, puede volver atrás en el explorador y seguir trabajando.</p>
                 <button class="btn btn-primary btn-lg" onclick="window.history.back();">
                 Volver atrás
                 </button>
-                <br><br>
-                <p>Al finalizar usted recibirá un correo confirmando el éxito de la operación</p>
-                <small>*Abajo tiene una lista de todos los destinatarios del proceso</small>
             </div>';
         foreach ($empleados as $empleado) {
             if($empleado->H_estado == 'A' && 
@@ -41,14 +38,16 @@ class ReciboEmpleadoEmailController extends Controller
             $dni_encriptado = openssl_encrypt($empleado->H_dni, $encryption_method, $key, $options = 0, $iv);
 
             // Generar link encriptado
-            $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
-            // $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
-            $link_empleado = "$test_server/rrhh/views/recibo_pdf_empleado.php?id=$dni_encriptado";
+            // $localhost = 'http://localhost/cirsub/cirsubapp';
+            // $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
+            $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
+            $link_empleado = "$server_produccion/rrhh/views/recibo_pdf_empleado.php?id=$dni_encriptado";
             
             
             try {
-                $mail = new ReciboEmpleado($empleado, $link_empleado);
-                return $mail;
+                // $mail = new ReciboEmpleado($empleado, $link_empleado);
+                // return $mail;
+                $mail = new MailBienvenida($empleado);
                 Mail::to($empleado->H_email)->send($mail);
                 echo 'Enviando correo para <strong>';
                 echo $empleado->H_nombre . ' ' . $empleado->H_apellido;
