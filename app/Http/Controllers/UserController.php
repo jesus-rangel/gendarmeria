@@ -15,37 +15,6 @@ class UserController extends Controller
     {
         $this->middleware(['role:admin|super-admin'])->except(['index','changePasswordForm', 'changePassword']);
     }
-    public function changePasswordForm(Request $request, User $user)
-    {
-        return view('users.change_password', compact('user'));
-    }
-
-    public function changePasswordEmail()
-    {
-        return view('users.change_password_email');
-    }
-
-    public function changePassword(ChangePasswordRequest $request)
-    {
-        // $this->can('changePassword', auth()->user());
-        if (Hash::check($request->old_password, auth()->user()->password)) {
-            auth()->user()->password = $request->password;
-        } else {
-            flash(__('auth.failed'))->error()->important();
-            return redirect()->back();
-        }
-
-        if(!auth()->user()->save()) {
-            flash(__('Submit Error!'))->error()->important();
-            return redirect()->back();
-        }
-
-        //Envia email avisando cambio de password
-        /* Auth::user()->notify(new PasswordWasChangedNotification()); */
-
-        flash(__('Submit Success!'))->success()->important();
-        return redirect()->route('home');
-    }
 
     public function index(Request $request)
     {
@@ -122,6 +91,7 @@ class UserController extends Controller
     {
         return view('users.delete', compact('user'));
     }
+
     public function destroy(User $user)
     {
         $user->delete();
@@ -133,6 +103,39 @@ class UserController extends Controller
 
         flash(__('Usuario elminiado con éxito!'))->success()->important();
         return redirect()->route('users.index');
-
     }
+
+    public function changePasswordForm(Request $request, User $user)
+    {
+        return view('users.change_password', compact('user'));
+    }
+
+    public function changePasswordEmail()
+    {
+        return view('users.change_password_email');
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        // $this->can('changePassword', auth()->user());
+        if (Hash::check($request->old_password, auth()->user()->password)) {
+            auth()->user()->password = $request->password;
+        } else {
+            flash(__('auth.failed'))->error()->important();
+            return redirect()->back();
+        }
+
+        if(!auth()->user()->save()) {
+            flash(__('Submit Error!'))->error()->important();
+            return redirect()->back();
+        }
+
+        //Envia email avisando cambio de password
+        /* Auth::user()->notify(new PasswordWasChangedNotification()); */
+        
+        flash(__('Submit Success!'))->success()->important();
+        return redirect()->route('home');
+    }
+
+
 }

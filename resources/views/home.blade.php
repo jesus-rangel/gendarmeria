@@ -32,8 +32,8 @@
                                 </a>
                             </div>
                             <div class="text-center my-2">
-                                <a href="#">
-                                    <button class="btn btn-info disabled" disabled>
+                                <a href="{{route('clients.index')}}">
+                                    <button class="btn btn-info">
                                         Gestionar Afiliados
                                     </button>
                                 </a>
