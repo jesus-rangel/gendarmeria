@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TareaEnvioMasivo extends Mailable implements ShouldQueue
+class TareaEnvioMasivo extends Mailable
 {
     use Queueable, SerializesModels;
 

@@ -12,9 +12,10 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clients = Client::dni($request->search_dni)->paginate(5);
+        return view('clients.index', compact('clients'));
     }
 
     /**
@@ -46,7 +47,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('sales.details', compact('client'));
     }
 
     /**

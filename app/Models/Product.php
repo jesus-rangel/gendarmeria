@@ -9,7 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'vademecum';
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class)->withTimestamps()->withPivot('quantity', 'purchase_date', 'user_id');
+    }
 
     public function scopeNombre($query, $value)
     {
