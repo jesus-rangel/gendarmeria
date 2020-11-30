@@ -74,16 +74,16 @@
                                             <td>{{$user->username}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->dni}}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{route('users.edit', $user->id)}}" class='edit'>
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                                 <a href=" {{route('users.delete', $user->id)}} " class='delete'>
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                                <a href=" {{route('users.change-password-email')}} " class='password'>
+                                                {{-- <a href=" {{route('users.change-password-email')}} " class='password'>
                                                     <i class='fas fa-key'></i>
-                                                </a>
+                                                </a> --}}
                                             </td>
                                         </tr>
                                         @endforeach

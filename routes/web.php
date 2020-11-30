@@ -37,6 +37,7 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::post('/users/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
     Route::get('/users/delete/{user}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('/organizations/delete/{organization}', [OrganizationController::class, 'delete'])->name('organizations.delete');
+    Route::get('/clients/add-product/{client}', [ClientController::class, 'addProduct'])->name('clients.add-product');
     
     Route::resource('users', UserController::class);
     Route::resource('organizations', OrganizationController::class);

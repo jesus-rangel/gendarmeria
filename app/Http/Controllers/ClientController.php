@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -47,9 +49,20 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('sales.details', compact('client'));
+        $client->load('products')
+            ->whereHas('products', function($query){
+                $query->where('purchase_date' >= Carbon::now()->startOfMonth())
+                    ->where('purchase_date' <= Carbon::now());
+            });
+
+        return view('clients.details', compact('client')); 
     }
 
+    public function addProduct(Request $request, Client $client)
+    {
+        $products = Product::nombre($request->search_name)->monodroga($request->search_monodroga)->laboratorio($request->search_lab)->troquel($request->search_troquel)->paginate(5);
+        return view('clients.add-product', compact('client', 'products'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

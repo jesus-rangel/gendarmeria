@@ -46,7 +46,8 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>DNI</th>
+                                            <th>&emsp;DNI</th>
+                                            <th>Cod. Est.</th>
                                             <th>Domicilio</th>
                                             <th>Provincia</th>
                                             <th>Acciones</th>
@@ -59,7 +60,10 @@
                                               {{ucwords(strtolower($client->A_nombre . ' ' .$client->A_apellido))}}
                                             </td>
                                             <td>
-                                              {{ucwords(strtolower($client->A_dni))}}
+                                              {{$client->A_dni}}
+                                            </td>
+                                            <td>
+                                                &emsp;{{$client->A_codest}}
                                             </td>
                                             <td>
                                               {{ucwords(strtolower($client->A_domicilio))}}

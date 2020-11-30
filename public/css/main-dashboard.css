@@ -22,9 +22,15 @@
     border-radius: 3px 3px 0 0;
 }
 
+
 .table-title h2 {
     margin: 5px 0 0;
     font-size: 24px;
+}
+
+.table-title h3 {
+    margin: 2.5px 0 0;
+    font-size: 22px;
 }
 
 .table-title .btn-group {

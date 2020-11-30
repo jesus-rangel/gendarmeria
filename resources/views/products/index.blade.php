@@ -52,13 +52,7 @@
                             <a href="{{route('products.index')}}" class="btn btn-warning">Limpiar Filtros</a>
                         </div>
                     </form>
-                    {{-- <div class="d-flex justify-content-center">
-                        <small class="text-center text-secondary mt-1">
-                            *Se pueden combinar los filtros de búsqueda como el usuario desee
-                        </small>
-                    </div> --}}
                 </div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -82,7 +76,8 @@
                                             <th>Nombre</th>
                                             <th>Laboratorio</th>
                                             <th>Presentación</th>
-                                            <th>Código</th>
+                                            <th>Troquel</th>
+                                            <th>Descuento</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,7 +87,10 @@
                                             <td>{{$product->nombre}}</td>
                                             <td>{{$product->laboratorio}}</td>
                                             <td>{{$product->presentacion}}</td>
-                                            <td class="text-center"> {{$product->troquel}}</td>
+                                            <td> {{$product->troquel}}</td>
+                                            <td class="text-center">
+                                                Hasta: {{$product->farmacias_convenidas}}
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

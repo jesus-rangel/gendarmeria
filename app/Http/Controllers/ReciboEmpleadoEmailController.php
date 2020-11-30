@@ -14,6 +14,7 @@ class ReciboEmpleadoEmailController extends Controller
 {
     public function send_mails()
     {
+        set_time_limit(0);
         $empleados = Empleado::all();
         echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">';
         echo 
@@ -47,14 +48,17 @@ class ReciboEmpleadoEmailController extends Controller
             try {
                 // $mail = new ReciboEmpleado($empleado, $link_empleado);
                 // return $mail;
-                $mail = new MailBienvenida($empleado);
+                $mail = new ReciboEmpleado($empleado, $link_empleado);
                 Mail::to($empleado->H_email)->send($mail);
-                echo 'Enviando correo para <strong>';
+                echo 'Enviado correo para <strong>';
                 echo $empleado->H_nombre . ' ' . $empleado->H_apellido;
                 echo '</strong> a ' . $empleado->H_email . '<br>';
             } catch (\Exception $e) {
                 $admin_title = 'Instancia de correo fallida';
-                $admin_message = "Fallido envío a $empleado->H_email.  Error: $e->getMessage()";
+                $admin_message = 'Fallido envío a <strong>'; 
+                $admin_message .= 
+                    ucwords(strtolower($empleado->H_nombre . ' ' . $empleado->H_apellido));  
+                $admin_message .= '</strong> Error: ' . $e->getMessage();
                 $mail_fallido = new TareaEnvioMasivo($admin_title, $admin_message);
                 Mail::to('jesusr.nm@gmail.com')->send($mail_fallido);
             } 

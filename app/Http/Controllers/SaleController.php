@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -30,8 +31,9 @@ class SaleController extends Controller
         return $client;
     } */
 
-    public function details()
+    public function show(Product $product)
     {
-        
+        dd($product);
+        return view('sales.show', compact('product'));
     }
 }
