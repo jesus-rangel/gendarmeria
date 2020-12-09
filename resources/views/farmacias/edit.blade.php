@@ -20,24 +20,24 @@
                             <h4>Editar Farmacia</h4>
                         </div>
                         <div class="card-body my-2">
-                          <form action="{{route('organizations.update', $organization->id)}}" method="post">
+                          <form action="{{route('farmacias.update', $farmacia->id)}}" method="post">
                             @csrf
                             @method('PUT')
                           <div class="form-group">
                             <label>Nombre</label>
-                          <input type="text" name="name"  id="name" class="form-control" required value="{{$organization->name}}">
+                          <input type="text" name="name"  id="name" class="form-control" required value="{{$farmacia->name}}">
                           </div>
                           <div class="form-group">
                               <label>Domicilio</label>
-                              <input type="text" name="domicilio" id="domicilio" class="form-control" required value="{{$organization->domicilio}}">
+                              <input type="text" name="domicilio" id="domicilio" class="form-control" required value="{{$farmacia->domicilio}}">
                           </div>
                           <div class="form-group">
                               <label>Provincia</label>
-                              <input type="text" class="form-control" name="provincia" id="provincia" required value="{{$organization->provincia}}">
+                              <input type="text" class="form-control" name="provincia" id="provincia" required value="{{$farmacia->provincia}}">
                           </div>
                           <div class="form-group">
                               <label>Telefono</label>
-                              <input type="text" class="form-control" name="telefono" id="telefono" required value="{{$organization->telefono}}">
+                              <input type="text" class="form-control" name="telefono" id="telefono" required value="{{$farmacia->telefono}}">
                           </div>					
                           </div>
                           <div class="card-footer">

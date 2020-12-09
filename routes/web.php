@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CirsubController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\AfiliadoController;
+use App\Http\Controllers\FarmaciaController;
+use App\Http\Controllers\OperacionController;
+use App\Http\Controllers\VademecumController;
 use App\Http\Controllers\FacadeLoginController;
-use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ReciboEmpleadoEmailController;
 
 /*
@@ -36,13 +38,15 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::get('/users/change-password-email', [UserController::class, 'changePasswordEmail'])->name('users.change-password-email');
     Route::post('/users/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
     Route::get('/users/delete/{user}', [UserController::class, 'delete'])->name('users.delete');
-    Route::get('/organizations/delete/{organization}', [OrganizationController::class, 'delete'])->name('organizations.delete');
-    Route::get('/clients/add-product/{client}', [ClientController::class, 'addProduct'])->name('clients.add-product');
+    Route::get('/farmacias/delete/{organization}', [FarmaciaController::class, 'delete'])->name('farmacias.delete');
+    Route::get('/clientes/add-product/{cliente:dni}', [ClienteController::class, 'addProduct'])->name('clientes.add-product');
+    Route::post('operacion', [OperacionController::class, 'store'])->name('operacion.store');
+    Route::get('/operacion/{operacion}/destroy', [OperacionController::class, 'destroy'])->name('operacion.destroy');
     
     Route::resource('users', UserController::class);
-    Route::resource('organizations', OrganizationController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('clients', ClientController::class);
+    Route::resource('farmacias', FarmaciaController::class);
+    Route::resource('vademecum', VademecumController::class);
+    Route::resource('clientes', ClienteController::class);
     Route::resource('sales', SaleController::class);
 });
 

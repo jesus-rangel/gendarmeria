@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Client;
 use App\Models\Product;
+use App\Models\Vademecum;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class VademecumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $clients = Client::dni($request->search_dni)->paginate(5);
-        return view('clients.index', compact('clients'));
+        $vademecum = Vademecum::nombre($request->search_nombre)->monodroga($request->search_monodroga)->laboratorio($request->search_lab)->troquel($request->search_troquel)->paginate(5);
+        return view('vademecum.index', compact('vademecum'));
     }
 
     /**
@@ -44,32 +43,21 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(Vademecum $vademecum)
     {
-        $client->load('products')
-            ->whereHas('products', function($query){
-                $query->where('purchase_date' >= Carbon::now()->startOfMonth())
-                    ->where('purchase_date' <= Carbon::now());
-            });
-
-        return view('clients.details', compact('client')); 
+        return view('vademecum.show', compact('vademecum'));
     }
 
-    public function addProduct(Request $request, Client $client)
-    {
-        $products = Product::nombre($request->search_name)->monodroga($request->search_monodroga)->laboratorio($request->search_lab)->troquel($request->search_troquel)->paginate(5);
-        return view('clients.add-product', compact('client', 'products'));
-    }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Vademecum $vademecum)
     {
         //
     }
@@ -78,10 +66,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Vademecum $vademecum)
     {
         //
     }
@@ -89,10 +77,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Vademecum $vademecum)
     {
         //
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
+use App\Models\Farmacia;
 use Illuminate\Http\Request;
 
-class OrganizationController extends Controller
+class FarmaciaController extends Controller
 {
     public function __construct()
     {
@@ -19,8 +19,8 @@ class OrganizationController extends Controller
      */
     public function index(Request $request)
     {
-        $organizations = Organization::name($request->search_name)->provincia($request->search_province)/* ->domicilio($request->search_address) */->paginate(5);
-        return view('organizations.index', compact('organizations'));
+        $farmacias = Farmacia::name($request->search_name)->provincia($request->search_province)/* ->domicilio($request->search_address) */->paginate(5);
+        return view('farmacias.index', compact('farmacias'));
     }
 
     /**
@@ -41,24 +41,24 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        $organization = Organization::create($request->all());
+        $farmacia = Farmacia::create($request->all());
 
-        if(!$organization->save()) {
+        if(!$farmacia->save()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('organizations.index');
+            return redirect()->route('farmacias.index');
         }
 
         flash(__('Farmacia agregada con éxito!'))->success()->important();
-        return redirect()->route('organizations.index');
+        return redirect()->route('farmacias.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function show(Organization $organization)
+    public function show(Farmacia $farmacia)
     {
         //
     }
@@ -66,12 +66,12 @@ class OrganizationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organization  $organization
+     * @param  \App\Models\Farmacia  $farmacia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organization $organization)
+    public function edit(Farmacia $farmacia)
     {
-        return view('organizations.edit', compact('organization'));
+        return view('farmacias.edit', compact('farmacia'));
     }
 
     /**
@@ -81,21 +81,21 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organization $organization)
+    public function update(Request $request, Farmacia $farmacia)
     {
-        $organization->fill($request->all());
-        $organization->save();
+        $farmacia->fill($request->all());
+        $farmacia->save();
 
-        if(!$organization->save()) {
+        if(!$farmacia->save()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('organizations.index');
+            return redirect()->route('farmacias.index');
         }
 
         flash(__('Farmacia actualizada con éxito!'))->success()->important();
-        return redirect()->route('organizations.index');
+        return redirect()->route('farmacias.index');
     }
 
-    public function delete(Organization $organization)
+    public function delete(Farmacia $farmacia)
     {
         return view('organizations.delete', compact('organization'));
     }
@@ -105,17 +105,17 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organization $organization)
+    public function destroy(Farmacia $farmacia)
     {
-        $organization->delete();
+        $farmacia->delete();
 
-        if(!$organization->delete()) {
+        if(!$farmacia->delete()) {
             flash(__('Error de operación!'))->error()->important();
-            return redirect()->route('organizations.index');
+            return redirect()->route('farmacias.index');
         }
 
         flash(__('Farmacia eliminada con éxito!'))->success()->important();
 
-        return redirect()->route('organizations.index');
+        return redirect()->route('farmacias.index');
     }
 }

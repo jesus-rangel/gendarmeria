@@ -22,24 +22,28 @@
                         <div class="card-body my-2">
                             <div class="text-center">
                                 <a href="{{route('users.index')}}">
-                                    <button class="btn btn-primary">Gestionar Usuarios</button>
+                                    <button class="btn btn-primary">
+                                        Administración de Usuarios
+                                    </button>
                                 </a>
                             </div>
                             @if (auth()->user()->hasRole('super-admin'))
                             <div class="text-center my-2">
-                                <a href="{{route('organizations.index')}}">
-                                    <button class="btn btn-success">Gestionar Farmacias</button>
-                                </a>
-                            </div>
-                            <div class="text-center my-2">
-                                <a href="{{route('clients.index')}}">
-                                    <button class="btn btn-info">
-                                        Gestionar Afiliados
+                                <a href="{{route('farmacias.index')}}">
+                                    <button class="btn btn-success">
+                                        Administración de Farmacias
                                     </button>
                                 </a>
                             </div>
                             <div class="text-center my-2">
-                                <a href="{{route('products.index')}}">
+                                <a href="{{route('clientes.index')}}">
+                                    <button class="btn btn-info">
+                                        Afiliados
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="text-center my-2">
+                                <a href="{{route('vademecum.index')}}">
                                     <button class="btn btn-warning">Vademecum</button>
                                 </a>
                             </div>

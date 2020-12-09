@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <form action="{{route('products.index')}}" method="GET" class=" justify-content-center">
+                    <form action="{{route('vademecum.index')}}" method="GET" class=" justify-content-center">
                         <div class="form-inline mb-2 justify-content-center">
                             <div class="input-group mr-sm-2">
                                 <div class="input-group-prepend">
@@ -18,7 +18,7 @@
                                         <i class="fas fa-file-signature"></i>
                                     </div>
                                 </div>
-                                <input type="text" name="search_name" id="search_name" class="form-control" placeholder="Buscar por nombre">
+                                <input type="text" name="search_nombre" id="search_nombre" class="form-control" placeholder="Buscar por nombre">
                             </div>
                             <div class="input-group mr-sm-2">
                                 <div class="input-group-prepend">
@@ -42,14 +42,14 @@
                                         <i class="fas fa-barcode"></i>
                                     </div>
                                 </div>
-                                <input type="text" name="search_code" id="search_code" class=" form-control" placeholder="Buscar por código">
+                                <input type="text" name="search_troquel" id="search_troquel" class=" form-control" placeholder="Buscar por troquel">
                             </div>
                         </div>
                         <div class="form-inline justify-content-center">
                             <button type="submit" class="btn btn-info mr-sm-2">
                                 Buscar
                             </button>
-                            <a href="{{route('products.index')}}" class="btn btn-warning">Limpiar Filtros</a>
+                            <a href="{{route('vademecum.index')}}" class="btn btn-warning">Limpiar Filtros</a>
                         </div>
                     </form>
                 </div>
@@ -65,15 +65,15 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h2>Gestionar <b>Medicamentos</b></h2>
+                                            <h2>Administración de <b>Medicamentos</b></h2>
                                         </div>                               	
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Monodroga</th>
                                             <th>Nombre</th>
+                                            <th>Monodroga</th>
                                             <th>Laboratorio</th>
                                             <th>Presentación</th>
                                             <th>Troquel</th>
@@ -81,26 +81,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $product)
+                                        @foreach ($vademecum as $medicamento)
                                         <tr>
-                                            <td>{{$product->monodroga}}</td>
-                                            <td>{{$product->nombre}}</td>
-                                            <td>{{$product->laboratorio}}</td>
-                                            <td>{{$product->presentacion}}</td>
-                                            <td> {{$product->troquel}}</td>
+                                            <td>{{$medicamento->nombre}}</td>
+                                            <td>{{$medicamento->monodroga}}</td>
+                                            <td>{{$medicamento->laboratorio}}</td>
+                                            <td>{{$medicamento->presentacion}}</td>
+                                            <td> {{$medicamento->troquel}}</td>
                                             <td class="text-center">
-                                                Hasta: {{$product->farmacias_convenidas}}
+                                                Hasta: {{$medicamento->farmacias_convenidas}}
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {!!$products->withQueryString()->links()!!}
+                                    {!!$vademecum->withQueryString()->links()!!}
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end mt-n4">
-                                <a href="{{url()->previous()}}" class="btn btn-secondary">Volver</a>
+                                <a href="{{route('home')}}" class="btn btn-secondary">Volver</a>
                             </div>
                         </div>
                     </div>

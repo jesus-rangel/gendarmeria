@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{-- {{ __('Dashboard') }} --}}
-                    <form action="{{route('clients.index')}}" method="get" class="form-inline justify-content-center">
+                    <form action="{{route('clientes.index')}}" method="get" class="form-inline justify-content-center">
                         <div class="input-group mr-sm-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -21,7 +21,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-info mr-sm-2">Buscar</button>
-                        <a href="{{route('clients.index')}}" class="btn btn-warning">Limpiar Filtros</a>
+                        <a href="{{route('clientes.index')}}" class="btn btn-warning">Limpiar Filtros</a>
                     </form>
                 </div>
 
@@ -38,41 +38,55 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h2>Gestionar <b>Afiliados</b></h2>
+                                            <h2>Administración de <b>Afiliados</b></h2>
                                         </div>
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>&emsp;DNI</th>
-                                            <th>Cod. Est.</th>
-                                            <th>Domicilio</th>
-                                            <th>Provincia</th>
+                                            <th width="20%">Nombre</th>
+                                            <th class="text-center">DNI</th>
+                                            <th class="text-center">Código Estadístico</th>
+                                            <th class="text-center">Parentesco</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($clients as $client)
+                                        @foreach ($clientes as $cliente)
                                         <tr>
-                                            <td>
-                                              {{ucwords(strtolower($client->A_nombre . ' ' .$client->A_apellido))}}
-                                            </td>
-                                            <td>
-                                              {{$client->A_dni}}
-                                            </td>
-                                            <td>
-                                                &emsp;{{$client->A_codest}}
-                                            </td>
-                                            <td>
-                                              {{ucwords(strtolower($client->A_domicilio))}}
-                                            </td>
-                                            <td>
-                                              {{ucwords(strtolower($client->A_provincia))}}
+                                            <td width="20%">
+                                              {{ucwords(strtolower($cliente->nombre . ' ' .$cliente->apellido))}}
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{route('clients.show', $client->id)}}" class='edit'>
+                                              {{$cliente->dni}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{$cliente->codest}}
+                                            </td>
+                                            <td class="text-center">
+                                                @if($cliente->parentesco == 1) {{'Padre'}}
+                                                @elseif($cliente->parentesco == 2){{'Madre'}}
+                                                @elseif($cliente->parentesco == 3){{'Hijo/a'}}
+                                                @elseif($cliente->parentesco == 4){{'Suegro/a'}}
+                                                @elseif($cliente->parentesco == 5){{'Yerno'}}
+                                                @elseif($cliente->parentesco == 6){{'Nuera'}}
+                                                @elseif($cliente->parentesco == 7){{'Abuelo/a'}}
+                                                @elseif($cliente->parentesco == 8){{'Nieto/a'}}
+                                                @elseif($cliente->parentesco == 9){{'Hermano/a'}}
+                                                @elseif($cliente->parentesco == 10){{'Cuñado/a'}}
+                                                @elseif($cliente->parentesco == 11){{'Tío/a'}}
+                                                @elseif($cliente->parentesco == 12){{'Sobrino/a'}}
+                                                @elseif($cliente->parentesco == 13){{'Cónyuge'}}
+                                                @elseif($cliente->parentesco == 14){{'Conviviente'}}
+                                                @elseif($cliente->parentesco == 15){{'Hijastro/a'}}
+                                                @elseif($cliente->parentesco == 16 
+                                                    || $cliente->parentesco == ''){{'Otro'}}
+                                                @elseif($cliente->parentesco > 17){{'Titular'}}
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{route('clientes.show', $cliente->dni)}}" class='edit'>
                                                   <i class="fas fa-search"></i>
                                                 </a>
                                             </td>
@@ -80,11 +94,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{$clients->withQueryString()->links()}}
+                                {{$clientes->withQueryString()->links()}}
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-n4">
-                            <a href="{{url()->previous()}}" class="btn btn-secondary">Volver</a>
+                            <a href="{{route('home')}}" class="btn btn-secondary">Volver</a>
                         </div>        
                     </div>
                 </div>

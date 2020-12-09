@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Vademecum extends Model
 {
     use HasFactory;
 
-    public function clients()
+    /* public function afiliados()
     {
-        return $this->belongsToMany(Client::class)->withTimestamps()->withPivot('quantity', 'purchase_date', 'user_id');
-    }
+        return $this->belongsTo(Afiliado::class);
+    } */
 
     public function scopeNombre($query, $value)
     {
@@ -34,7 +34,7 @@ class Product extends Model
     {
         if($value)
         {
-            return $query-where('laboratorio', 'like', "%{$value}%");
+            return $query->where('laboratorio', 'like', "%{$value}%");
         }
     }
 
@@ -42,7 +42,9 @@ class Product extends Model
     {
         if($value)
         {
-            return $query-where('troquel', 'like', "%{$value}");
+            return $query->where('troquel', 'like', "%{$value}%");
         }
     }
+
+    protected $table = 'vademecum';
 }

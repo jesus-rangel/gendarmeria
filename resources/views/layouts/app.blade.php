@@ -60,11 +60,23 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="#" class="dropdown-item disabled">
-                                    {{__('Búsqueda Afiliados')}}
+                                <a href="{{url('/home')}}" class="dropdown-item">
+                                    <i class="fas fa-home"></i>&emsp;Home
                                 </a>
-                                <a href="#" class="dropdown-item disabled">
-                                    {{__('Retractar operación')}}
+                                <a href="{{route('users.index')}}" class="dropdown-item">
+                                    <i class="fas fa-users-cog"></i>&emsp;{{__('Usuarios')}}
+                                </a>
+                                <a href="{{route('clientes.index')}}" class="dropdown-item">
+                                    <i class="fas fa-users"></i>&emsp;{{__('Afiliados')}}
+                                </a>
+                                <a href="{{route('farmacias.index')}}" class="dropdown-item">
+                                    <i class="fas fa-clinic-medical"></i>&emsp;{{__('Farmacias')}}
+                                </a>
+                                <a href="{{route('vademecum.index')}}" class="dropdown-item">
+                                    <span style="margin-left: 2.5px">
+                                        <i class="fas fa-book-medical"></i>
+                                    </span>
+                                    &emsp;{{__('Vademecum')}}
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a href="{{route('users.change-password-form', auth()->user())}}" class="dropdown-item">
@@ -81,14 +93,15 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
+                   {{--  <form class="form-inline my-2 my-lg-0">
+                        @csrf
                         <input 
                             class="form-control mr-sm-2"
                             type="text" 
                             placeholder="Buscar Afiliado por DNI"
                         >
                         <button class="btn btn-secondary my-2 my-sm-0 disabled" type="submit" id="search-btn">Buscar</button>
-                    </form>
+                    </form> --}}
                     @endguest
                 </div>
             </div>

@@ -23,24 +23,24 @@
                                 Confirme que desea eliminar la farmacia:
                             </div> 
                           </div>
-                          <form action=" {{route('organizations.destroy', $organization->id)}} " method="post">
+                          <form action=" {{route('farmacias.destroy', $farmacia->id)}} " method="post">
                             @csrf
                             @method('DELETE')
                             <div class="form-group">
                                 <label for="name">Nombre</label>
-                                <input type="text" name="name" id="name" class="form-control disabled" value=" {{$organization->name}} ">
+                                <input type="text" name="name" id="name" class="form-control disabled" value=" {{$farmacia->name}} ">
                             </div>
                             <div class="form-group">
                                 <label for="name">Domicilio</label>
-                                <input type="text" name="domicilio" id="domicilio" class="form-control disabled" value=" {{$organization->domicilio}} ">
+                                <input type="text" name="domicilio" id="domicilio" class="form-control disabled" value=" {{$farmacia->domicilio}} ">
                             </div>
                             <div class="form-group">
                                 <label for="name">Provincia</label>
-                                <input type="text" name="provincia" id="provincia" class="form-control disabled" value=" {{$organization->provincia}} ">
+                                <input type="text" name="provincia" id="provincia" class="form-control disabled" value=" {{$farmacia->provincia}} ">
                             </div>
                             <div class="form-group">
                                 <label for="name">Telefono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control disabled" value=" {{$organization->telefono}} ">
+                                <input type="text" name="telefono" id="telefono" class="form-control disabled" value=" {{$farmacia->telefono}} ">
                             </div>
                             <div class="card-footer">
                                 <a href="{{url()->previous()}}" class="btn btn-default">

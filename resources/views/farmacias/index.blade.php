@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <form action="{{route('organizations.index')}}" method="GET" class="form-inline justify-content-center">
+                    <form action="{{route('farmacias.index')}}" method="GET" class="form-inline justify-content-center">
                         <div class="input-group mr-sm-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
@@ -38,7 +38,7 @@
                         <button type="submit" class="btn btn-info mr-sm-2">
                             Buscar
                         </button>
-                        <a href="{{route('organizations.index')}}" class="btn btn-warning">Limpiar Filtros</a>
+                        <a href="{{route('farmacias.index')}}" class="btn btn-warning">Limpiar Filtros</a>
                     </form>
                     {{-- <div class="d-flex justify-content-center">
                         <small class="text-center text-secondary mt-1">
@@ -59,7 +59,7 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h2>Gestionar <b>Farmacias</b></h2>
+                                            <h2>Administración de <b>Farmacias</b></h2>
                                         </div>
                                         @if (auth()->user()->hasRole('super-admin'))
                                         <div class="col-sm-6">
@@ -83,17 +83,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($organizations as $organization)
+                                        @foreach ($farmacias as $farmacia)
                                         <tr>
-                                            <td>{{$organization->name}}</td>
-                                            <td>{{$organization->domicilio}}</td>
-                                            <td>{{$organization->provincia}}</td>
-                                            <td>{{$organization->telefono}}</td>
+                                            <td>{{$farmacia->name}}</td>
+                                            <td>{{$farmacia->domicilio}}</td>
+                                            <td>{{$farmacia->provincia}}</td>
+                                            <td>{{$farmacia->telefono}}</td>
                                             <td class="text-center">
-                                                <a href="{{route('organizations.edit', $organization->id)}}" class='edit' >
+                                                <a href="{{route('farmacias.edit', $farmacia->id)}}" class='edit' >
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <a href="{{route('organizations.delete', $organization->id)}}" class" class='delete'>
+                                                <a href="{{route('farmacias.delete', $farmacia->id)}}" class" class='delete'>
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -102,7 +102,7 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {!!$organizations->withQueryString()->links()!!}
+                                    {!!$farmacias->withQueryString()->links()!!}
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end mt-n4">
@@ -111,10 +111,10 @@
                         </div>
                     </div>
                     <!-- Add Modal HTML -->
-                    <div id="addOrganization" class="modal fade">
+                    <div id="addOrganizationModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form method="POST" action="{{route('organizations.store')}}">
+                                <form method="POST" action="{{route('farmacias.store')}}">
                                     @csrf
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Agregar Farmacia</h4>

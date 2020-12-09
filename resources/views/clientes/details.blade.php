@@ -23,15 +23,12 @@
         <div class="d-flex justify-content-center flex-column">
           <div class="name_container">
             <div class="name">
-              {{ucwords(strtolower($client->A_nombre . ' ' . $client->A_apellido))}}
+              {{ucwords(strtolower($cliente->nombre . ' ' . $cliente->apellido))}}
             </div>
           </div>
-          <div class="address">
-              {{ucwords(strtolower("{$client->A_domicilio}, {$client->A_localidad}, {$client->A_provincia}"))}}
-          </div>
-          <div class="dni"><strong>DNI:&nbsp;</strong>{{$client->A_dni}}</div>
+          <div class="dni"><strong>DNI:&nbsp;</strong>{{$cliente->dni}}</div>
           <div class="codigo_estadistico">
-            <b>Código Estadístico:&nbsp;</b>{{$client->A_codest}}
+            <b>Código Estadístico:&nbsp;</b>{{$cliente->codest}}
           </div>
         </div>
         <div class="container-xl">
@@ -47,23 +44,31 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th>Monodroga</th>
                     <th>Nombre</th>
+                    <th>Monodroga</th>
                     <th>Laboratorio</th>
                     <th>Presentación</th>
                     <th>Troquel</th>
                     <th>Descuento</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($client->products as $product)
+                  @foreach($operaciones as $operacion)
                     <tr>
-                      <td>{{$product->monodroga}}</td>
-                      <td>{{$product->nombre}}</td>
-                      <td>{{$product->laboratorio}}</td>
-                      <td>{{$product->presentacion}}</td>
-                      <td>{{$product->troquel}}</td>
-                      <td class="text-center">Hasta: {{$product->farmacias_convenidas}}</td>
+                      <td>{{$operacion->vademecum->nombre}}</td>
+                      <td>{{$operacion->vademecum->monodroga}}</td>
+                      <td>{{$operacion->vademecum->laboratorio}}</td>
+                      <td>{{$operacion->vademecum->presentacion}}</td>
+                      <td>{{$operacion->vademecum->troquel}}</td>
+                      <td class="text-center">Hasta 40%</td>
+                      @if ($operacion->purchase_date <= Carbon\Carbon::now()->endOfDay() && $operacion->purchase_date >= Carbon\Carbon::now()->startOfDay())
+                      <td class="text-center">
+                        <a href="{{route('operacion.destroy', $operacion->id)}}" class="btn btn-danger text-white">Borrar</a>
+                      </td>
+                      @else
+                      <td></td>
+                      @endif
                     </tr>
                   @endforeach
                 </tbody>
@@ -71,22 +76,14 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mt-n4">
-            <a href="{{url()->previous()}}" class="btn btn-secondary">Volver</a>
+            <a href="{{route('clientes.index')}}" class="btn btn-secondary">Volver</a>
           </div>
         </div>
         <div class="card-footer card-footer-client">
           <div class="row">
-            <a href="{{route('clients.add-product', $client->id)}}" class="btn btn-info my-2"
-              {{$client->A_farmacos + $client->A_farmacosextra >= 6 ? 'disabled' : ''}}
-            >
+            <a href="{{route('clientes.add-product', $cliente->dni)}}" class="btn btn-info my-2">
               Agregar Medicamento
             </a>
-          </div>
-          <div class="row">
-            <small class="text-muted text-center">
-              *El máximo de medicamentos que este afiliado puede adquirir al mes es de: 
-              <b>{{$client->A_farmacos + $client->A_farmacosextra}}</b>
-            </small>
           </div>
         </div>
     </div>

@@ -46,7 +46,7 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h2>Gestionar <b>Usuarios</b></h2>
+                                            <h2>Administración de <b>Usuarios</b></h2>
                                         </div>
                                         @if (auth()->user()->hasRole(['super-admin', 'admin']))
                                         <div class="col-sm-6">

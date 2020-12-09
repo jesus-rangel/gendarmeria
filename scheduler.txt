@@ -1,0 +1,4 @@
+Linea 1(Nombre de Driver donde esta el proyecto) Ej: D:
+Linea 2(Path del proyecto) Ej: cd D:\wampp\htdocs\farma
+ Linea 3 (Ruta de instalación de php más el comando artisan)
+	Ej: C:\php\php.exe artisan schedule:run 1>> NUL 2>&1

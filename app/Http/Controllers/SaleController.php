@@ -11,7 +11,7 @@ class SaleController extends Controller
 {
     public function index(Request $request)
     {
-        $client = Client::find(1)->load('products');
+        $client = Afiliado::find(1)->load('vademecum');
     
         return $client;
     }
