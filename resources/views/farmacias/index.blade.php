@@ -93,7 +93,7 @@
                                                 <a href="{{route('farmacias.edit', $farmacia->id)}}" class='edit' >
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <a href="{{route('farmacias.delete', $farmacia->id)}}" class" class='delete'>
+                                                <a href="{{route('farmacias.delete', $farmacia->id)}}" class='delete'>
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>

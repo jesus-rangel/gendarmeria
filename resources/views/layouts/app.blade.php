@@ -93,20 +93,15 @@
                             </div>
                         </li>
                     </ul>
-                   {{--  <form class="form-inline my-2 my-lg-0">
-                        @csrf
-                        <input 
-                            class="form-control mr-sm-2"
-                            type="text" 
-                            placeholder="Buscar Afiliado por DNI"
-                        >
-                        <button class="btn btn-secondary my-2 my-sm-0 disabled" type="submit" id="search-btn">Buscar</button>
-                    </form> --}}
+                    
+                    <client-search
+                        :route="jesus"
+                    >
+                    </client-search>
                     @endguest
                 </div>
             </div>
         </nav>
-
         <main class="mt-4">
             @yield('content')
         </main>

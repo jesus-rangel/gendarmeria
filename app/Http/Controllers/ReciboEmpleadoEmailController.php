@@ -14,7 +14,7 @@ class ReciboEmpleadoEmailController extends Controller
 {
     public function send_mails()
     {
-        set_time_limit(0);
+        /* set_time_limit(0);
         $empleados = Empleado::all();
         echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">';
         echo 
@@ -37,12 +37,13 @@ class ReciboEmpleadoEmailController extends Controller
             $key = '9901:io=[<>602vV03&Whb>9J&M~Oq';
             $iv = '1234567812345678';
             $dni_encriptado = openssl_encrypt($empleado->H_dni, $encryption_method, $key, $options = 0, $iv);
+            $encoded_dni = rawurlencode($dni_encriptado);
 
             // Generar link encriptado
             // $localhost = 'http://localhost/cirsub/cirsubapp';
             // $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
             $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
-            $link_empleado = "$server_produccion/rrhh/views/recibo_pdf_empleado.php?id=$dni_encriptado";
+            $link_empleado = "$server_produccion/rrhh/views/recibo_pdf_empleado.php?id=$encoded_dni";
             
             
             try {
@@ -68,31 +69,35 @@ class ReciboEmpleadoEmailController extends Controller
     $mail_message = 'Los correos para descargar recibos en PDF han sido  
                         enviados con éxito a todos sus destinatarios';
     $mail_exito = new TareaEnvioMasivo($mail_title, $mail_message);
-    Mail::to('jesusr.nm@gmail.com')->send($mail_exito);
+    Mail::to('jesusr.nm@gmail.com')->send($mail_exito); */
         /* DEV TESTING, SINGLE EMAIL, UNCOMMENT NEXT FEW LINES */
-        /* $empleado = [
-            'nombre' => 'Jesus Rangel', // 'Evanny Mariela Leguizamon'
-            'email' => 'jesusr.nm@gmail.com',
-            'dni' => '95805562' // '37799723'
-        ];
+        $empleado = new Empleado;
+        $empleado->H_nombre = 'VERONICA   VIRGINIA';
+        $empleado->H_apellido  = 'RACIGH';
+        $empleado->H_email = 'veronica.racigh@cirsubgn.org';
+        $empleado->H_dni = '25027054'; 
     
         // Encriptar el DNI del empleado
         $encryption_method = 'aes-256-cbc';
         $key = '9901:io=[<>602vV03&Whb>9J&M~Oq';
         $iv = '1234567812345678';
-        $dni_encriptado = openssl_encrypt($empleado['dni'], $encryption_method, $key, $options = 0, $iv);
+        $dni_encriptado = openssl_encrypt($empleado->H_dni, $encryption_method, $key, $options = 0, $iv);
     
         // Generar link encriptado
-        $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
-    
-        $link_empleado = "$test_server/rrhh/views/recibo_pdf_empleado.php?id=$dni_encriptado";
+        $localhost = 'http://localhost/cirsub/cirsubapp';
+        // $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
+        $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
+
+        $encoded_dni = rawurlencode($dni_encriptado);
+        $link_empleado = "$localhost/rrhh/views/recibo_pdf_empleado.php?id=$encoded_dni";
+        
         try {
-            $mail = new ReciboEmpleadoMail($empleado, $link_empleado);
-            // return $mail;
+            $mail = new ReciboEmpleado($empleado, $link_empleado);
+            return $mail;
             Mail::to($empleado['email'])->send($mail);
-            echo 'Email sent to ' . $empleado['nombre'] . ' at ' . $empleado['email'];
+            echo 'Email sent to ' . $empleado->H_nombre . ' at ' . $empleado->H_email;
         } catch (\Exception $e) {
             echo $e->getMessage();
-        } */
+        }
     }
 }

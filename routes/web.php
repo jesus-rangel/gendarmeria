@@ -47,6 +47,7 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::resource('farmacias', FarmaciaController::class);
     Route::resource('vademecum', VademecumController::class);
     Route::resource('clientes', ClienteController::class);
+    Route::get('clientes/{cliente?}', [ClienteController::class, 'show'])->name('clientes.details');
     Route::resource('sales', SaleController::class);
 });
 
