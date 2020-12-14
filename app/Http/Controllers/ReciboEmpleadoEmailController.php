@@ -14,7 +14,7 @@ class ReciboEmpleadoEmailController extends Controller
 {
     public function send_mails()
     {
-        /* set_time_limit(0);
+        set_time_limit(0);
         $empleados = Empleado::all();
         echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css">';
         echo 
@@ -69,9 +69,9 @@ class ReciboEmpleadoEmailController extends Controller
     $mail_message = 'Los correos para descargar recibos en PDF han sido  
                         enviados con éxito a todos sus destinatarios';
     $mail_exito = new TareaEnvioMasivo($mail_title, $mail_message);
-    Mail::to('jesusr.nm@gmail.com')->send($mail_exito); */
+    Mail::to('jesusr.nm@gmail.com')->send($mail_exito);
         /* DEV TESTING, SINGLE EMAIL, UNCOMMENT NEXT FEW LINES */
-        $empleado = new Empleado;
+        /* $empleado = new Empleado;
         $empleado->H_nombre = 'VERONICA   VIRGINIA';
         $empleado->H_apellido  = 'RACIGH';
         $empleado->H_email = 'veronica.racigh@cirsubgn.org';
@@ -98,6 +98,6 @@ class ReciboEmpleadoEmailController extends Controller
             echo 'Email sent to ' . $empleado->H_nombre . ' at ' . $empleado->H_email;
         } catch (\Exception $e) {
             echo $e->getMessage();
-        }
+        } */
     }
 }
