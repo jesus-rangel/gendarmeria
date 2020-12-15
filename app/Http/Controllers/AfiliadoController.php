@@ -18,7 +18,7 @@ class AfiliadoController extends Controller
      */
     public function index(Request $request)
     {
-        $afiliados = Cliente::paginate(5);
+        $afiliados = Cliente::dni($request->search_dni)->paginate(5);
         // dd($clients->getClients());
         // $clients = Client::dni($request->search_dni)->paginate(5);
         return view('afiliados.index', compact('afiliados'));

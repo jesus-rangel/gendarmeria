@@ -17,7 +17,7 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $clientes = Cliente::paginate(5);
+        $clientes = Cliente::dni($request->search_dni)->paginate(5);
         // dd($clients->getClients());
         // $clients = Client::dni($request->search_dni)->paginate(5);
         return view('clientes.index', compact('clientes'));

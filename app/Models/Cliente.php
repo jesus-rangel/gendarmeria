@@ -25,4 +25,12 @@ class Cliente extends Model
     {
         return $this->hasMany(Operacion::class, 'dni_afiliado', 'dni');
     }
+
+    public function scopeDni($query, $value)
+    {
+        if($value)
+        {
+            return $query->where('dni', 'like', "%{$value}%");
+        }
+    }
 }
