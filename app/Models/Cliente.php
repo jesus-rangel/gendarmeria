@@ -23,7 +23,7 @@ class Cliente extends Model
 
     public function operaciones()
     {
-        return $this->hasMany(Operacion::class, 'dni_afiliado', 'dni');
+        return $this->hasMany(Operacion::class, 'dni_cliente', 'dni');
     }
 
     public function scopeDni($query, $value)

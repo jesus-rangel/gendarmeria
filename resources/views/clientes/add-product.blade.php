@@ -74,6 +74,13 @@
           </div>
         </form>
       </div>
+      @if($cliente
+            ->operaciones()
+            ->where('purchase_date', '>=' ,Carbon\Carbon::now()->startOfMonth())
+            ->where('purchase_date', '<=' ,Carbon\Carbon::now()) 
+            ->count() >= 6)  
+        <p class="text-center text-danger mb-n3 mt-2">El afiliado alcanzó el límite mensual de medicamentos a retirar</p>
+      @endif
         <div class="container-xl">
           <div class="table-responsive">
               <div class="table-wrapper">
@@ -106,13 +113,21 @@
                               <td> {{$medicamento->troquel}}</td>
                               <td>Hasta 40%</td>
                               <td class="text-center">
-                                <form action="{{route('operacion.store')}}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="dni_cliente" value="{{$cliente->dni}}">
-                                    <input type="hidden" name="id_vademecum" value="{{$medicamento->id}}">
-                                    <button type="submit" class="btn btn-success text-white"
-                                        onclick="confirm('Esta seguro de querer agregar este medicamento?')">Agregar</button>
-                                </form>
+                                  @if($cliente
+                                    ->operaciones()
+                                    ->where('purchase_date', '>=' ,Carbon\Carbon::now()->startOfMonth())
+                                    ->where('purchase_date', '<=' ,Carbon\Carbon::now())
+                                    ->count() < 6)
+                                        <form action="{{route('operacion.store')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="dni_cliente" value="{{$cliente->dni}}">
+                                            <input type="hidden" name="id_vademecum" value="{{$medicamento->id}}">
+                                            <button type="submit" class="btn btn-success text-white"
+                                                onclick="confirm('Esta seguro de querer agregar este medicamento?')">Agregar</button>
+                                        </form>
+                                    @else
+                                        <button class="btn btn-secondary text-secondary" disabled>Agregar</button>
+                                    @endif
                               </td>
                           </tr>
                           @endforeach

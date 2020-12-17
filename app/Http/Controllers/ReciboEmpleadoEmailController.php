@@ -40,16 +40,15 @@ class ReciboEmpleadoEmailController extends Controller
             $encoded_dni = rawurlencode($dni_encriptado);
 
             // Generar link encriptado
-            // $localhost = 'http://localhost/cirsub/cirsubapp';
+            $localhost = 'http://localhost/cirsub/cirsubapp';
             // $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
             $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
             $link_empleado = "$server_produccion/rrhh/views/recibo_pdf_empleado.php?id=$encoded_dni";
             
             
             try {
-                // $mail = new ReciboEmpleado($empleado, $link_empleado);
-                // return $mail;
                 $mail = new ReciboEmpleado($empleado, $link_empleado);
+                // return $mail;
                 Mail::to($empleado->H_email)->send($mail);
                 echo 'Enviado correo para <strong>';
                 echo $empleado->H_nombre . ' ' . $empleado->H_apellido;
@@ -82,13 +81,14 @@ class ReciboEmpleadoEmailController extends Controller
         $key = '9901:io=[<>602vV03&Whb>9J&M~Oq';
         $iv = '1234567812345678';
         $dni_encriptado = openssl_encrypt($empleado->H_dni, $encryption_method, $key, $options = 0, $iv);
-    
+        $encoded_dni = rawurlencode($dni_encriptado);
+        
         // Generar link encriptado
         $localhost = 'http://localhost/cirsub/cirsubapp';
         // $test_server = 'http://190.220.255.138:8007/cirsub/CirsubApp';
         $server_produccion = 'http://190.220.255.138:8198/CirsubApp';
 
-        $encoded_dni = rawurlencode($dni_encriptado);
+        
         $link_empleado = "$localhost/rrhh/views/recibo_pdf_empleado.php?id=$encoded_dni";
         
         try {
