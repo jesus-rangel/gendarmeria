@@ -9,7 +9,7 @@ class FarmaciaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:admin|super-admin'])->only(['edit', 'update', 'delete', 'destroy']);
+        $this->middleware(['role:super-admin'])/* ->only(['edit', 'update', 'delete', 'destroy']) */;
     }
 
     /**

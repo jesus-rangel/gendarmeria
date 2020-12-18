@@ -20,6 +20,8 @@
                         <h4>Opciones de {{Str::title(auth()->user()->roles()->first()->name)}}</h4>
                         </div>
                         <div class="card-body my-2">
+                            @if(auth()->user()->hasRole('super-admin') || 
+                                auth()->user()->hasRole('admin'))
                             <div class="text-center">
                                 <a href="{{route('users.index')}}">
                                     <button class="btn btn-primary">
@@ -27,6 +29,7 @@
                                     </button>
                                 </a>
                             </div>
+                            @endif
                             @if (auth()->user()->hasRole('super-admin'))
                             <div class="text-center my-2">
                                 <a href="{{route('farmacias.index')}}">
@@ -35,6 +38,7 @@
                                     </button>
                                 </a>
                             </div>
+                            @endif
                             <div class="text-center my-2">
                                 <a href="{{route('clientes.index')}}">
                                     <button class="btn btn-info">
@@ -47,7 +51,6 @@
                                     <button class="btn btn-warning">Vademecum</button>
                                 </a>
                             </div>
-                            @endif
                         </div>
                     </div>
                 </div>

@@ -18,18 +18,13 @@
 </template>
 <script>
 export default {
-  props: ["route"],
   data: () => {
     return {
       value: "",
     };
   },
-  mounted() {
-    console.log(this.route);
-  },
   methods: {
     submit() {
-      console.log(this.route);
       document.location.href = `clientes/${this.value}`;
     },
   },

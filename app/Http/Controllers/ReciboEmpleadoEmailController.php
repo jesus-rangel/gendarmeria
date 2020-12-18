@@ -71,10 +71,10 @@ class ReciboEmpleadoEmailController extends Controller
     Mail::to('jesusr.nm@gmail.com')->send($mail_exito);
         /* DEV TESTING, SINGLE EMAIL, UNCOMMENT NEXT FEW LINES */
         /* $empleado = new Empleado;
-        $empleado->H_nombre = 'VERONICA   VIRGINIA';
-        $empleado->H_apellido  = 'RACIGH';
+        $empleado->H_nombre = 'Alan Jorge';
+        $empleado->H_apellido  = 'Dos Santos';
         $empleado->H_email = 'veronica.racigh@cirsubgn.org';
-        $empleado->H_dni = '25027054'; 
+        $empleado->H_dni = '35695976'; 
     
         // Encriptar el DNI del empleado
         $encryption_method = 'aes-256-cbc';

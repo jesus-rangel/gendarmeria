@@ -1927,18 +1927,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["route"],
   data: function data() {
     return {
       value: ""
     };
   },
-  mounted: function mounted() {
-    console.log(this.route);
-  },
   methods: {
     submit: function submit() {
-      console.log(this.route);
       document.location.href = "clientes/".concat(this.value);
     }
   }

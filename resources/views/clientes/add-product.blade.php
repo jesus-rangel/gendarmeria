@@ -123,7 +123,7 @@
                                             <input type="hidden" name="dni_cliente" value="{{$cliente->dni}}">
                                             <input type="hidden" name="id_vademecum" value="{{$medicamento->id}}">
                                             <button type="submit" class="btn btn-success text-white"
-                                                onclick="confirm('Esta seguro de querer agregar este medicamento?')">Agregar</button>
+                                                onclick="confirmAgregar()">Agregar</button>
                                         </form>
                                     @else
                                         <button class="btn btn-secondary text-secondary" disabled>Agregar</button>
@@ -221,4 +221,19 @@
 @endsection
 @section('custom-js')
 <script src="js/user-dashboard.js"></script>
+<script>
+    function confirmAgregar()
+    {
+        console.log('entre');
+        if(confirm('Esta seguro de querer agregar este medicamento?'))
+        {
+            alert('Medicamento agregado');
+        }
+        else
+        {
+            preventDefault();
+            alert('Operación Cancelada');
+        }
+    }
+</script>
 @endsection

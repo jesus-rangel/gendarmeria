@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:admin|super-admin'])->except(['index','changePasswordForm', 'changePassword']);
+        $this->middleware(['role:admin|super-admin'])->except(['changePasswordForm', 'changePassword']);
     }
 
     public function index(Request $request)

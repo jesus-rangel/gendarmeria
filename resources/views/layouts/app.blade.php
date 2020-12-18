@@ -56,7 +56,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                             data-target="dropdownMenu">
                                 {{ Auth::user()->name }}
                             </a>
@@ -64,15 +64,20 @@
                                 <a href="{{url('/home')}}" class="dropdown-item">
                                     <i class="fas fa-home"></i>&emsp;Home
                                 </a>
+                                @if(auth()->user()->hasRole('super-admin') || 
+                                auth()->user()->hasRole('admin'))
                                 <a href="{{route('users.index')}}" class="dropdown-item">
                                     <i class="fas fa-users-cog"></i>&emsp;{{__('Usuarios')}}
                                 </a>
+                                @endif
                                 <a href="{{route('clientes.index')}}" class="dropdown-item">
                                     <i class="fas fa-users"></i>&emsp;{{__('Afiliados')}}
                                 </a>
+                                @if (auth()->user()->hasRole('super-admin'))
                                 <a href="{{route('farmacias.index')}}" class="dropdown-item">
                                     <i class="fas fa-clinic-medical"></i>&emsp;{{__('Farmacias')}}
                                 </a>
+                                @endif
                                 <a href="{{route('vademecum.index')}}" class="dropdown-item">
                                     <span style="margin-left: 2.5px">
                                         <i class="fas fa-book-medical"></i>
@@ -95,9 +100,7 @@
                         </li>
                     </ul>
                     
-                    <client-search
-                        :route="route"
-                    >
+                    <client-search>
                     </client-search>
                     @endguest
                 </div>
@@ -111,7 +114,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script>
+    <script defer>
         $('.dropdown-toggle').dropdown()
         $('#flash-overlay-modal').modal();
      </script>

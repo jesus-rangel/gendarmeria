@@ -13,6 +13,7 @@ class VademecumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         $vademecum = Vademecum::nombre($request->search_nombre)->monodroga($request->search_monodroga)->laboratorio($request->search_lab)->troquel($request->search_troquel)->paginate(5);
