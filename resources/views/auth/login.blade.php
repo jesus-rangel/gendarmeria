@@ -38,25 +38,20 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    {{-- Funcionalidad para recordar usuario comentada pues no se finalizó --}}
+                    {{-- <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="custom-control-label" for="remember">
                                 {{ __('Recordar esta cuenta') }}
                             </label>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="d-flex justify-content-center mt-3 login_container">
                             <button type="submit" class="btn btn-primary login_btn">
                                 {{ __('Login') }}
                             </button>
-
-                            {{-- @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif --}}
                     </div>
                 </form>
             </div>
