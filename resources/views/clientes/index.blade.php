@@ -107,6 +107,3 @@
     </div>
 </div>
 @endsection
-@section('custom-js')
-<script src="js/client-dashboard.js"></script>
-@endsection

@@ -90,6 +90,3 @@
   </div>
 </div>
 @endsection
-@section('custom-js')
-<script src="js/user-dashboard.js"></script>
-@endsection

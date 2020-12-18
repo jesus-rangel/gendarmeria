@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-require('./bootstrap');
 Vue.use(VueAxios, axios)
 window.Vue = require('vue');
 import VueAxios from 'vue-axios'
