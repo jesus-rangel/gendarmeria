@@ -1,11 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CirsubController;
 use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\FarmaciaController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\VademecumController;
@@ -48,9 +45,6 @@ Route::middleware(['auth', 'CheckActiveUser'])->group(function ()
     Route::resource('vademecum', VademecumController::class);
     Route::resource('clientes', ClienteController::class);
     Route::get('clientes/{cliente?}', [ClienteController::class, 'show'])->name('clientes.details');
-    Route::resource('sales', SaleController::class);
 });
 
 Route::get('facade/login', [App\Http\Controllers\FacadeLoginController::class, 'login'])->name('facade.login');
-
-Route::get('cirsub', [CirsubController::class, 'index'])->name('cirsub');

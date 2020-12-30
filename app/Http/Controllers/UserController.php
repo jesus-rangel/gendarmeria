@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
+use App\Models\Farmacia;
 use Illuminate\Http\Request;
-use App\Http\Requests\ChangePasswordRequest;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ChangePasswordRequest;
 
 
 class UserController extends Controller
@@ -18,9 +19,19 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::name($request->search_name)->dni($request->search_dni)->paginate(5);
+        $users = User::with('farmacia')->name($request->search_name)->dni($request->search_dni);
+        if(auth()->user()->hasRole('super-admin'))
+        {
+            $users = $users->paginate(5);
+        }
+        else
+        {
+            $users = $users->where('farmacia_id', auth()->user()->farmacia_id)
+                           ->paginate(5);
+        }
         $roles = Role::all();
-        return view('users.index', compact('users', 'roles'));
+        $farmacias = Farmacia::all();
+        return view('users.index', compact('users', 'roles', 'farmacias'));
     }
 
     public function create()
@@ -53,6 +64,19 @@ class UserController extends Controller
         
         $user = new User;
         $user->fill($request->all());
+        if(auth()->user()->hasRole('super-admin'))
+        {
+            $user->farmacia_id = $request->user_farmacia;
+        }
+        elseif(auth()->user()->hasRole('admin'))
+        {
+            $user->farmacia_id = auth()->user()->farmacia_id;
+        }
+        else
+        {
+            flash(__('Error de operación!'))->error()->important();
+            return redirect()->route('users.index');
+        }
         $user->password = 'CirSub*2020';
         if(!$user->save()) {
             flash(__('Error de operación!'))->error()->important();

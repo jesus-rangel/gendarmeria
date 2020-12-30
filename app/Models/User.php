@@ -26,6 +26,7 @@ class User extends Authenticatable
         'dni',
         'password',
         'telefono',
+        'farmacia_id'
     ];
 
     /**
@@ -69,5 +70,11 @@ class User extends Authenticatable
         {
             return $query->where('dni', 'like', "%{$value}%");
         }
+    }
+
+    public function farmacia()
+    {
+        return $this->belongsTo(Farmacia::class);
+        
     }
 }

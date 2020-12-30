@@ -61,9 +61,9 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>User Name</th>
                                             <th>Email</th>
                                             <th>DNI</th>
+                                            <th>Farmacia</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -71,9 +71,15 @@
                                         @foreach ($users as $user)
                                         <tr>
                                             <td>{{$user->name}}</td>
-                                            <td>{{$user->username}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->dni}}</td>
+                                            <td>
+                                                @if($user->farmacia_id == null)
+                                                    Admin de Sistemas
+                                                @else
+                                                {{$user->farmacia->name}}
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{route('users.edit', $user->id)}}" class='edit'>
                                                     <i class="fas fa-pencil-alt"></i>
@@ -130,6 +136,22 @@
                                                 @foreach($roles as $role)
                                                 <option value="{{$role->id}}">
                                                     {{$role->name}}
+                                                </option>
+                                                @endforeach   
+                                            </select>    
+                                        </div>
+                                        @endif
+                                        @if(auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('admin'))
+                                        <div class="form-group">
+                                            <label for="user_role">Farmacia</label>
+                                            <select name="user_farmacia" id="user_farmacia" class="form-control" required>
+                                                <option class="text-muted" value="" readonly>- Elija una opción- </option>
+                                                @if(auth()->user()->hasRole('super-admin'))
+                                                <option value="null">Ninguna (Sólo para super-admins)</option>
+                                                @endif
+                                                @foreach($farmacias as $farmacia)
+                                                <option value="{{$farmacia->id}}">
+                                                    {{$farmacia->name}}
                                                 </option>
                                                 @endforeach   
                                             </select>    
