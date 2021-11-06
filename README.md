@@ -7,7 +7,7 @@ This aplication keeps track nationwide of the quantity and type of medication ea
 
 -   **[Plug-in for spanish translation (laraveles/spanish)](https://github.com/Laraveles/spanish)**
 -   **[Original layoute based on Bootswatch's Cerulean theme (available after installing the package that substitutes Tailwind for Bootstrap)](https://bootswatch.com/cerulean/)**
--   **[Login page based on Mutiullah Samim's work](https://bootsnipp.com/snippets/3522X)(https://bootsnipp.com/snippets/vl4R7)**
+-   **[Login page based on Mutiullah Samim's work](https://bootsnipp.com/snippets/3522X)**
 -   **[Stock-free background picture by user Gustavo Fring @Pexels.com](https://www.pexels.com/es-es/@gustavo-fring)**
 -   **[UI Table for the different CRUDs based on Tutorial Republic's work. Added FontAwesome and Material Icons. Added security measures to hide and disable buttons according to user role](https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form)**
 -   **[Markdown for mass emails based on Coder's Tape template](https://www.youtube.com/watch?v=HCe700GIpz4)**
@@ -23,7 +23,7 @@ Esta aplicación lleva el control a nivel nacional de la cantidad de medicamento
 
 -   **[Plug-in para traducción al español (laraveles/spanish)](https://github.com/Laraveles/spanish)**
 -   **[Layout original Basado en el Cerulean Theme de Bootswatch (disponible al haber instalado el paquete que sustituye Tailwind por Bootstrap)](https://bootswatch.com/cerulean/)**
--   **[Login page basado en el trabajo de Mutiullah Samim](https://bootsnipp.com/snippets/3522X)(https://bootsnipp.com/snippets/vl4R7)**
+-   **[Login page basado en el trabajo de Mutiullah Samim](https://bootsnipp.com/snippets/3522X)**
 -   **[Stock-free background picture por Gustavo Fring @Pexels.com](https://www.pexels.com/es-es/@gustavo-fring)**
 -   **[Tabla para UI de los CRUD basada en el trabajo de TutorialRepublic, sumado FontAwesome para funcionar en conjunto con Material Icons. Agregadas medidas de seguridad para esconder botones y deshabilitar funcionalidades según rol de usuario](https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form)**
 -   **[Markdown para los correos basando en el template de Coder's Tape](https://www.youtube.com/watch?v=HCe700GIpz4)**
