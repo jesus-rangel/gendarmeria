@@ -2,7 +2,7 @@
 
 This aplication keeps track nationwide of the quantity and type of medication each member of the Argentinean Gendarmerie may acquire with the discount they have a right to as officers per month (maximum 6 medications per month)
 
-## Front-end Functionality
+## Links to resources for Front-end Functionality
 
 
 -   **[Plug-in for spanish translation (laraveles/spanish)](https://github.com/Laraveles/spanish)**
@@ -19,7 +19,7 @@ This aplication keeps track nationwide of the quantity and type of medication ea
 
 Esta aplicación lleva el control a nivel nacional de la cantidad de medicamentos que cada miembro de la Gendarmería Argentina puede adquirir con el descuento que le corresponde como oficial por cada mes (un máximo de seis medicamentos al mes)
 
-## Funcionalidad Front-end
+## Links a recursos para funcionalidad Front-end
 
 -   **[Plug-in para traducción al español (laraveles/spanish)](https://github.com/Laraveles/spanish)**
 -   **[Layout original Basado en el Cerulean Theme de Bootswatch (disponible al haber instalado el paquete que sustituye Tailwind por Bootstrap)](https://bootswatch.com/cerulean/)**
