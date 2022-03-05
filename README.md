@@ -1,4 +1,4 @@
-# Medication acquisition control sistem for the Argentinean Gendarmerie
+# Medication acquisition control system for the Argentinean Gendarmerie
 
 This aplication keeps track nationwide of the quantity and type of medication each member of the Argentinean Gendarmerie may acquire with the discount they have a right to as officers per month (maximum 6 medications per month)
 
