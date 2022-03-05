@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # Medication acquisition control system for the Argentinean Gendarmerie
+=======
+# Medication acquisition control sistem for the Argentinean Gendarmerie
+>>>>>>> Stashed changes
 =======
 # Medication acquisition control sistem for the Argentinean Gendarmerie
 >>>>>>> Stashed changes
@@ -9,7 +13,10 @@ This aplication keeps track nationwide of the quantity and type of medication ea
 ## Links to resources for Front-end Functionality
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 -   **[Plug-in for spanish translation (laraveles/spanish)](https://github.com/Laraveles/spanish)**
@@ -21,7 +28,11 @@ This aplication keeps track nationwide of the quantity and type of medication ea
 -   **[Functionality for embedding images into mails using a plug-in by Eduardo Kum](https://github.com/eduardokum/laravel-mail-auto-embed)**
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --------------------------------------------------------------------------------------------------------------------
+=======
+---
+>>>>>>> Stashed changes
 =======
 ---
 >>>>>>> Stashed changes
