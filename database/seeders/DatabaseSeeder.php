@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cliente;
+use App\Models\Afiliado;
+use App\Models\Farmacia;
+use App\Models\Vademecum;
+use App\Models\FamiliaresSocio;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +19,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(RoleSeeder::class);
+        Afiliado::factory(10)->create();
+        Cliente::factory(10)->create();
+        FamiliaresSocio::factory(10)->create();
+        Farmacia::factory(10)->create(); 
+        Vademecum::factory(10)->create(); 
+        $this->call(RoleSeeder::class); 
         $this->call(UserSeeder::class);
-        $this->call(EmpleadoSeeder::class);
-        $this->call(OrganizationSeeder::class);
+        $this->call(EmpleadoSeeder::class);  
     }
 }

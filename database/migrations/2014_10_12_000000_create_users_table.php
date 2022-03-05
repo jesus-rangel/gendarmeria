@@ -19,10 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('dni')->unique();
-            $table->string('email')->unique()->nullable();
+            $table->bigInteger('farmacia')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_active')->default(true);
+            $table->tinyInteger('is_active')->default(true);
+            $table->string('email')->unique()->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

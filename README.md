@@ -1,10 +1,17 @@
+<<<<<<< Updated upstream
 # Medication acquisition control system for the Argentinean Gendarmerie
+=======
+# Medication acquisition control sistem for the Argentinean Gendarmerie
+>>>>>>> Stashed changes
 
 This aplication keeps track nationwide of the quantity and type of medication each member of the Argentinean Gendarmerie may acquire with the discount they have a right to as officers per month (maximum 6 medications per month)
 
 ## Links to resources for Front-end Functionality
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 -   **[Plug-in for spanish translation (laraveles/spanish)](https://github.com/Laraveles/spanish)**
 -   **[Original layoute based on Bootswatch's Cerulean theme (available after installing the package that substitutes Tailwind for Bootstrap)](https://bootswatch.com/cerulean/)**
 -   **[Login page based on Mutiullah Samim's work](https://bootsnipp.com/snippets/3522X)**
@@ -13,7 +20,11 @@ This aplication keeps track nationwide of the quantity and type of medication ea
 -   **[Markdown for mass emails based on Coder's Tape template](https://www.youtube.com/watch?v=HCe700GIpz4)**
 -   **[Functionality for embedding images into mails using a plug-in by Eduardo Kum](https://github.com/eduardokum/laravel-mail-auto-embed)**
 
+<<<<<<< Updated upstream
 --------------------------------------------------------------------------------------------------------------------
+=======
+---
+>>>>>>> Stashed changes
 
 # Sistema de control de adquisición de medicamentos para la Gendarmería Argentina
 

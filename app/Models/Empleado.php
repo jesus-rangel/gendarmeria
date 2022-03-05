@@ -27,7 +27,5 @@ class Empleado extends Model
         'email_verified_at' => 'datetime'
     ];
 
-    protected 
-        $table = 'rh_legajo_adm',
-        $primaryKey = 'Id_legajo';
+
 }

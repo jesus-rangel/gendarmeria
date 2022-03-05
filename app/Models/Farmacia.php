@@ -10,6 +10,9 @@ class Farmacia extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'farmacias';
+
+
     protected $fillable = [
         'name',
         'provincia',
@@ -23,7 +26,7 @@ class Farmacia extends Model
     {
         if ($value)
         {
-            return $query->where('name', 'like', "%{$value}%");
+            return $query->where('name', 'like', "%$value%");
         }
     }
 
@@ -31,7 +34,7 @@ class Farmacia extends Model
     {
         if ($value)
         {
-            return $query->where('domicilio', 'like', "%{$value}%");
+            return $query->where('domicilio', 'like', "%$value%");
         }
     }
 
@@ -39,7 +42,7 @@ class Farmacia extends Model
     {
         if ($value)
         {
-            return $query->where('provincia', 'like', "%{$value}%");
+            return $query->where('provincia', 'like', "%$value%");
         }
     }
 }
